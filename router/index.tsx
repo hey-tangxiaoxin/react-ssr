@@ -1,12 +1,17 @@
 import React, { cloneElement, lazy } from "react";
 import { Route, Routes } from "react-router-dom";
-import { DashboardOutlined, UserOutlined, FileImageOutlined } from "@ant-design/icons";
+import {
+  DashboardOutlined,
+  UserOutlined,
+  FileImageOutlined,
+} from "@ant-design/icons";
 import Layout from "../pages/components/Layout";
 import Login from "../pages/Login";
 import Dashboard from "../pages/Dashboard";
 import User from "../pages/User";
 import CMS from "../pages/CMS";
 import NotFound from "../pages/NotFound";
+import Chat from "../pages/AI";
 
 // const Login = lazy(() => import("../pages/Login"));
 // const Dashboard = lazy(() => import("../pages/Dashboard"));
@@ -34,6 +39,10 @@ export const routerConfig: IRoute[] = [
     children: [
       {
         path: "/",
+        element: <Chat />,
+      },
+      {
+        path: "/dashboard",
         element: <Dashboard />,
       },
       {
@@ -54,8 +63,13 @@ export const routerConfig: IRoute[] = [
 
 export const menu = [
   {
-    title: "Dashboard",
+    title: "AI",
     path: "/",
+    icon: <DashboardOutlined />,
+  },
+  {
+    title: "Dashboard",
+    path: "/dashboard",
     icon: <DashboardOutlined />,
   },
   {

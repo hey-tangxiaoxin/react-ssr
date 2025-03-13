@@ -13,9 +13,9 @@ const FileList = () => {
   }, []);
 
   const getAsset = useCallback((path?: string) => {
-    return Request.get<any, []>("/cms/getAsset", {
+    return Request.get<any>("/cms/getAsset", {
       params: { path },
-    }).then((data) => {
+    }).then(({data}) => {
       setData(data);
     });
   }, []);

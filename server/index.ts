@@ -15,6 +15,8 @@ import user from "./user";
 import cms from "./cms";
 import render from "./render";
 import { secretKey } from "./const";
+import { verify } from "jsonwebtoken";
+import ai from './ai'
 
 const app: Application = express();
 
@@ -38,6 +40,7 @@ app.use("/api/login", login);
 app.use("/api/dashboard", dashboard);
 app.use("/api/user", user);
 app.use("/api/cms", cms);
+app.use("/api/chat", ai);
 app.use(render);
 
 app.use(function (err: Error, req: Request, res: Response, next: NextFunction) {
@@ -46,7 +49,7 @@ app.use(function (err: Error, req: Request, res: Response, next: NextFunction) {
   }
 });
 
-getPort({ port: 8000 }).then((port) => {
+getPort({ port: 13000, random: false }).then((port) => {
   app.listen(port, () => {
     console.log(`server is running, visit: http://localhost:${port}`);
   });

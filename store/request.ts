@@ -6,18 +6,17 @@ const request = axios.create({
   timeout: 10000,
   headers: isClient
     ? {
-        Authorization: localStorage.getItem("token"),
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       }
     : {},
 });
 
 request.interceptors.response.use(
   (response) => {
-    if(response.data.code!==1) throw Error(response.data.message)
-    return response.data.data;
+    if (response.data.code !== 1) throw Error(response.data.message);
+    return response.data;
   },
   (error) => {
-    console.log(error)
     const { response } = error;
     if (response?.status === 401 && isClient) {
       history.pushState(null, "", "/login");
